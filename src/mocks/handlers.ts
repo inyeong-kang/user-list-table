@@ -68,6 +68,11 @@ const saveUsers = (users: User[]) => {
 export const handlers = [
     http.get(`${BASE_URL}/users`, () => {
         return HttpResponse.json({ data: getUsers() });
+
+        // return HttpResponse.json(
+        //     { error: 'Some Server Error' },
+        //     { status: 500 },
+        // );
     }),
 
     http.post(`${BASE_URL}/users`, async ({ request }) => {
