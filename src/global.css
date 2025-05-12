@@ -10,3 +10,21 @@
 .ant-dropdown .ant-table-filter-dropdown {
     border-radius: 8px;
 }
+
+.ant-modal .ant-modal-header {
+    margin-bottom: 12px;
+}
+
+.ant-modal .ant-modal-body {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.ant-form-item {
+    margin-bottom: 20px;
+}
+
+.ant-form-item .ant-form-item-label > label {
+    font: var(--text-title);
+    color: rgba(0, 0, 0, 0.45);
+}

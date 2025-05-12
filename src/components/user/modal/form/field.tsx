@@ -1,6 +1,7 @@
 import { Form, Input, FormItemProps, DatePicker, Select, Checkbox } from 'antd';
 import { CSSProperties, ElementType } from 'react';
 import { FORM_VALIDATION } from '@/constants';
+import { StyledRequiredMark } from './mark';
 
 interface FormFieldProps extends FormItemProps {
     type?: 'text' | 'textarea' | 'select' | 'date' | 'checkbox';
@@ -66,6 +67,16 @@ export const FormField = ({
     return (
         <Form.Item
             {...props}
+            label={
+                required ? (
+                    <p>
+                        {props.label}
+                        <StyledRequiredMark> *</StyledRequiredMark>
+                    </p>
+                ) : (
+                    props.label
+                )
+            }
             rules={fieldRules}
             valuePropName={type === 'checkbox' ? 'checked' : 'value'}
         >

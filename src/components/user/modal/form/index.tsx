@@ -17,6 +17,7 @@ export const UserForm = ({
     return (
         <>
             <Form
+                requiredMark={false}
                 form={form}
                 layout="vertical"
                 onFieldsChange={onFieldsChange}
