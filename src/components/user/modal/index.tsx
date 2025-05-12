@@ -56,6 +56,8 @@ export const UserFormModal = ({
             ...values,
             joinDate: dayjs(values.joinDate).toISOString(),
             memo: values.memo || '',
+            address: values.address || '',
+            hasAgreedEmail: values.hasAgreedEmail || false,
         };
 
         if (initialValues) {
