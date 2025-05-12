@@ -2,7 +2,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { User } from '@/types';
+import { Nullable, User } from '@/types';
 import { useBooleanState } from '@/hooks';
 import { UserFormModal } from './modal';
 import { UserTable } from './table';
@@ -30,9 +30,9 @@ const StyledMain = styled.main`
 
 export const UserList = () => {
     const [modalOpen, toggleModalOpen] = useBooleanState();
-    const [selectedUser, setSelectedUser] = useState<User | null>(null);
+    const [selectedUser, setSelectedUser] = useState<Nullable<User>>(null);
 
-    const setModalContext = (user: User | null, open: boolean) => {
+    const setModalContext = (user: Nullable<User>, open: boolean) => {
         setSelectedUser(user);
         toggleModalOpen(open);
     };

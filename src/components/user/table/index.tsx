@@ -20,11 +20,11 @@ import {
     USER_QUERY_KEYS,
     useUserListQuery,
 } from '@/queries';
-import { User, FilterOption } from '@/types';
+import { User, FilterOption, Nullable } from '@/types';
 import { UserFilterOptionList } from './filter-option-list';
 
 interface UserTableProps {
-    setModalContext: (user: User | null, open: boolean) => void;
+    setModalContext: (user: Nullable<User>, open: boolean) => void;
 }
 
 export const UserTable = ({ setModalContext }: UserTableProps) => {

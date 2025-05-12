@@ -7,11 +7,11 @@ import {
     USER_QUERY_KEYS,
     useUpdateUserMutation,
 } from '@/queries';
-import { User } from '@/types';
+import { Nullable, User } from '@/types';
 import { UserForm } from './form';
 
 interface UserFormModalProps extends ModalProps {
-    initialValues: User | null;
+    initialValues: Nullable<User>;
     onCancel: () => void;
 }
 
