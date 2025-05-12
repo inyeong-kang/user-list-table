@@ -53,37 +53,46 @@ export const EMAIL_FILTER_OPTIONS: FilterOption[] = [
 export const TABLE_COLUMN_INFO: Record<keyof User, object> = {
     name: {
         title: '이름',
-        minWidth: 120,
         width: 120,
         ellipsis: true,
+        fixed: 'left',
     },
     address: {
         title: '주소',
         minWidth: 250,
+        width: 250,
         ellipsis: true,
         render: (address: string) => address || '-',
     },
     memo: {
         title: '메모',
-        minWidth: 250,
+        width: 250,
         ellipsis: true,
         render: (memo: string) => memo || '-',
     },
     joinDate: {
         title: '가입일',
-        minWidth: 200,
+        width: 200,
         ellipsis: true,
         render: (date: string) => dayjs(date).format(DEFAULT_DATE_FORMAT),
+        fixed: 'left',
     },
     action: {
         title: '직업',
-        minWidth: 250,
+        width: 250,
         render: (action: User['action']) => USER_ACTION_TYPE[action] || '-',
     },
     hasAgreedEmail: {
         title: '이메일 수신 동의',
-        minWidth: 150,
+        width: 150,
+        fixed: 'left',
         render: (agreed: boolean) => <Checkbox checked={agreed} />,
     },
-    id: { title: '', dataIndex: 'more', key: 'more', width: 48, minWidth: 48 },
+    id: {
+        title: '',
+        dataIndex: 'more',
+        key: 'more',
+        width: 48,
+        fixed: 'right',
+    },
 } as const;

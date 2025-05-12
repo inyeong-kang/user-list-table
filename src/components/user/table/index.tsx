@@ -134,6 +134,7 @@ export const UserTable = ({ setModalContext }: UserTableProps) => {
             rowKey="id"
             loading={isLoading}
             pagination={false}
+            scroll={{ x: 'max-content' }}
         />
     );
 };
