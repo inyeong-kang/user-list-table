@@ -1,0 +1,12 @@
+.ant-table-filter-dropdown-btns {
+    display: none !important;
+}
+
+.ant-dropdown {
+    min-width: 180px;
+    width: 180px;
+}
+
+.ant-dropdown .ant-table-filter-dropdown {
+    border-radius: 8px;
+}
