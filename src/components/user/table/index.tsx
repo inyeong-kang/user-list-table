@@ -5,7 +5,7 @@ import type {
 } from 'antd/es/table/interface';
 import { useQueryClient } from '@tanstack/react-query';
 import { MoreOutlined } from '@ant-design/icons';
-import { Table, Button, Checkbox, Dropdown, message } from 'antd';
+import { Button, Dropdown, Table, Checkbox } from 'antd';
 import dayjs from 'dayjs';
 import { useState, Key } from 'react';
 import {
@@ -21,6 +21,7 @@ import {
     useUserListQuery,
 } from '@/queries';
 import { User, FilterOption, Nullable } from '@/types';
+import { useMessage } from '@/hooks';
 import { UserFilterOptionList } from './filter-option-list';
 
 interface UserTableProps {
@@ -29,7 +30,7 @@ interface UserTableProps {
 
 export const UserTable = ({ setModalContext }: UserTableProps) => {
     const queryClient = useQueryClient();
-    const [messageApi, contextHolder] = message.useMessage();
+    const messageApi = useMessage();
     const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
 
     const { data: users = [], isLoading } = useUserListQuery();
@@ -53,16 +54,12 @@ export const UserTable = ({ setModalContext }: UserTableProps) => {
                     id: record.id,
                     successCallback: () => {
                         queryClient.invalidateQueries([USER_QUERY_KEYS.LIST]);
-                        messageApi.open({
-                            type: 'success',
-                            content: `${record.name} 회원이 삭제되었습니다.`,
-                        });
+                        messageApi.success(
+                            `${record.name} 회원이 삭제되었습니다.`,
+                        );
                     },
                     errorCallback: () => {
-                        messageApi.open({
-                            type: 'error',
-                            content: `${record.name} 회원 삭제 실패`,
-                        });
+                        messageApi.error(`${record.name} 회원 삭제 실패`);
                     },
                 });
                 break;
@@ -182,7 +179,6 @@ export const UserTable = ({ setModalContext }: UserTableProps) => {
 
     return (
         <>
-            {contextHolder}
             <Table<User>
                 size="middle"
                 columns={columns}

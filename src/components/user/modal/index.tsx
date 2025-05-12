@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { Form, message, Modal, ModalProps } from 'antd';
+import { Form, Modal, ModalProps } from 'antd';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import {
@@ -8,6 +8,7 @@ import {
     useUpdateUserMutation,
 } from '@/queries';
 import { Nullable, User } from '@/types';
+import { useMessage } from '@/hooks';
 import { UserForm } from './form';
 
 interface UserFormModalProps extends ModalProps {
@@ -21,8 +22,8 @@ export const UserFormModal = ({
     initialValues,
 }: UserFormModalProps) => {
     const queryClient = useQueryClient();
+    const messageApi = useMessage();
     const [form] = Form.useForm<User>();
-    const [messageApi, contextHolder] = message.useMessage();
     const [isFormValid, setIsFormValid] = useState(false);
 
     const { mutate: createMutate, isLoading: isCreateLoading } =
@@ -81,7 +82,6 @@ export const UserFormModal = ({
 
     return (
         <>
-            {contextHolder}
             <Modal
                 cancelText="취소"
                 okText={actionText}
