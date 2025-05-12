@@ -1,3 +1,4 @@
+import { isBoolean } from '@/utils';
 import { SyntheticEvent, useCallback, useState } from 'react';
 
 type toggleCallback = (booleanOrEvent?: boolean | SyntheticEvent) => void;
@@ -5,10 +6,6 @@ type toggleCallback = (booleanOrEvent?: boolean | SyntheticEvent) => void;
 export interface UseBooleanStateOption {
     initialState?: boolean;
     prevent?: boolean;
-}
-
-function isBoolean(data?: unknown): data is boolean {
-    return typeof data === 'boolean';
 }
 
 export function useBooleanState(
