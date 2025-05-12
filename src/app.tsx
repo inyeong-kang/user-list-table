@@ -1,12 +1,15 @@
 import { UserList } from './components';
-import { MessageProvider } from './contexts/message';
+import { GlobalBoundary } from './components';
+import { MessageProvider } from './contexts';
 import './global.css';
 
 function App() {
     return (
-        <MessageProvider>
-            <UserList />
-        </MessageProvider>
+        <GlobalBoundary>
+            <MessageProvider>
+                <UserList />
+            </MessageProvider>
+        </GlobalBoundary>
     );
 }
 

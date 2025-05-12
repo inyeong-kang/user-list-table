@@ -6,7 +6,7 @@ import { Nullable, User } from '@/types';
 import { useBooleanState } from '@/hooks';
 import { UserFormModal } from './modal';
 import { UserTable } from './table';
-import { Typography } from '../common';
+import { Typography, FetchBoundary } from '../common';
 
 const StyledHeader = styled.header`
     position: fixed;
@@ -50,7 +50,9 @@ export const UserList = () => {
                 </Button>
             </StyledHeader>
             <StyledMain>
-                <UserTable setModalContext={setModalContext} />
+                <FetchBoundary>
+                    <UserTable setModalContext={setModalContext} />
+                </FetchBoundary>
             </StyledMain>
             <UserFormModal
                 key={selectedUser?.id}
