@@ -77,7 +77,12 @@ export const UserTable = ({ setModalContext }: UserTableProps) => {
             onFilter: (value: Key | boolean, record: User) => {
                 const recordValue = record[dataIndex];
 
-                if (dayjs(recordValue as string).isValid() && isString(value)) {
+                console.log(recordValue, value, 'hi...');
+                if (
+                    isString(recordValue) &&
+                    dayjs(recordValue).isValid() &&
+                    isString(value)
+                ) {
                     return dayjs(recordValue as string).isSame(
                         dayjs(value),
                         'day',
