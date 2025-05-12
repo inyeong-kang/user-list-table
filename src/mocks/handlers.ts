@@ -5,19 +5,19 @@ import { BASE_URL, STORAGE_KEY } from './const';
 const initialUsers: User[] = [
     {
         id: 1,
-        name: '홍길동',
-        address: '서울시 강남구',
-        memo: 'VIP 고객',
-        joinDate: '2024-01-01T00:00:00Z',
+        name: 'John Doe',
+        address: '서울 강남구',
+        memo: '외국인',
+        joinDate: '2024-10-10T00:00:00Z',
         action: 'DEV',
         hasAgreedEmail: true,
     },
     {
         id: 2,
-        name: '김철수',
-        address: '부산시 해운대구',
-        memo: '신규 가입',
-        joinDate: '2024-01-02T00:00:00Z',
+        name: 'Foo Bar',
+        address: '서울 서초구',
+        memo: '한국인',
+        joinDate: '2024-10-02T00:00:00Z',
         action: 'PO',
         hasAgreedEmail: false,
     },
@@ -25,24 +25,44 @@ const initialUsers: User[] = [
         id: 3,
         name: '이영희',
         address: '인천시 연수구',
-        memo: '휴면 계정',
-        joinDate: '2024-01-03T00:00:00Z',
+        memo: '외국인',
+        joinDate: '2024-10-03T00:00:00Z',
         action: 'DESIGN',
         hasAgreedEmail: true,
     },
+    {
+        id: 4,
+        name: '박철수',
+        address: '서울시 광진구',
+        memo: '한국인',
+        joinDate: '2024-10-04T00:00:00Z',
+        action: 'DESIGN',
+        hasAgreedEmail: false,
+    },
 ];
 
-if (!localStorage.getItem(STORAGE_KEY)) {
+let memoryUsers = [...initialUsers];
+
+const useLocalStorage = STORAGE_KEY.includes('LocalStorage');
+
+if (useLocalStorage && !localStorage.getItem(STORAGE_KEY)) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(initialUsers));
 }
 
 const getUsers = (): User[] => {
-    const users = localStorage.getItem(STORAGE_KEY);
-    return users ? JSON.parse(users) : [];
+    if (useLocalStorage) {
+        const users = localStorage.getItem(STORAGE_KEY);
+        return users ? JSON.parse(users) : [];
+    }
+    return memoryUsers;
 };
 
 const saveUsers = (users: User[]) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+    if (useLocalStorage) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+    } else {
+        memoryUsers = users;
+    }
 };
 
 export const handlers = [
