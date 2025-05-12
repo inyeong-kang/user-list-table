@@ -1,9 +1,20 @@
 import type { Preview } from '@storybook/react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { initialize, mswLoader } from 'msw-storybook-addon';
 import React from 'react';
 import { GlobalStyle } from '../src/styles/globalStyle';
 
-const queryClient = new QueryClient();
+// MSW 초기화
+initialize();
+
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            retry: false,
+            refetchOnWindowFocus: false,
+        },
+    },
+});
 
 const preview: Preview = {
     parameters: {
@@ -22,6 +33,7 @@ const preview: Preview = {
             </QueryClientProvider>
         ),
     ],
+    loaders: [mswLoader],
 };
 
 export default preview;
